@@ -1,5 +1,7 @@
 # calculator
 
+## Assumptions
+- Keydown events use the name of the key rather than keycode, so using the keyboard for anything other than numbers probably won't work for non-english users
 ## Project setup
 ```
 npm install
