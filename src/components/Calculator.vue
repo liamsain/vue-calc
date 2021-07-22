@@ -7,7 +7,6 @@
 </template>
 
 <script lang="ts">
-
 import Vue from "vue";
 import Keypad from "./Keypad.vue";
 import Display from "./Display.vue";
@@ -58,11 +57,23 @@ export default Vue.extend({
   },
   methods: {
     onBackspace() {
-      // if result, make result first operand, clear second and result
       if (this.result.length) {
         this.firstOperand = this.result;
-        this.secondOperand = '';
-        this.operator = '';
+        this.secondOperand = "";
+        this.operator = "";
+      } else if (this.secondOperand.length) {
+        this.secondOperand = this.secondOperand.substring(
+          0,
+          this.secondOperand.length - 1
+        );
+      } else {
+        this.firstOperand = this.firstOperand.substring(
+          0,
+          this.firstOperand.length - 1
+        );
+        if (!this.firstOperand.length) {
+          this.firstOperand = "0";
+        }
       }
     },
     onClear() {
@@ -86,9 +97,9 @@ export default Vue.extend({
     handleNumberKey(key: string) {
       if (this.result.length) {
         this.firstOperand = key;
-        this.result = '';
-        this.secondOperand = '';
-        this.operator = '';
+        this.result = "";
+        this.secondOperand = "";
+        this.operator = "";
         return;
       }
       if (this.operator.length) {
