@@ -87,6 +87,9 @@ export default Vue.extend({
         this.calculateResult();
         return;
       }
+      if (this.operator.length) {
+        this.calculateResult();
+      }
       this.operator = key;
       if (this.result.length) {
         this.firstOperand = this.result;
